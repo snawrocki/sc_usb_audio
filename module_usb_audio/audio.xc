@@ -732,15 +732,6 @@ unsigned static deliver(chanend c_out, chanend ?c_spd_out,
                     samplesIn_0[((frameCount-1)&(I2S_CHANS_PER_FRAME-1))+i] = bitrev(sample); // channels 1, 3, 5.. on each line.
 
             }
-
-#ifdef SU1_ADC_ENABLE
-            {
-                unsigned x;
-                x = inuint(c_adc);
-                inct(c_adc);
-                asm volatile("stw %0, dp[g_adcVal]"::"r"(x));
-            }
-#endif
 #endif
 
 #ifndef CODEC_MASTER
@@ -966,39 +957,6 @@ chanend ?c_config, chanend ?c
     unsigned mClk;
     unsigned divide;
     unsigned firstRun = 1;
-
-#ifdef SU1_ADC_ENABLE
-    /* Setup galaxian ADC */
-    unsigned data[1],  channel;
-    int r;
-    unsigned int vals[NUMBER_WORDS];
-    int cnt = 0;
-    int div;
-    unsigned val = 0;
-    int val2 = 0;
-    int adcOk = 0;
-
-    /* Enable adc on channel */
-    enable_xs1_su_adc_input(0, c);
-
-    /* General ADC control (enabled, 1 samples per packet, 32 bits per sample) */
-    data[0] = 0x10201;
-    data[0] = 0x30101;
-    r = write_periph_32(xs1_su, 2, 0x20, 1, data);
-
-    /* ADC needs a few clocks before it starts pumping out samples */
-    for(int i = 0; i< 10; i++)
-    {
-        p_lrclk <: val;
-        val = ~val;
-        {
-            timer t;
-            unsigned time;
-            t :> time;
-            t when timerafter(time+1000):> void;
-        }
-    }
-#endif
 
     /* Clock master clock-block from master-clock port */
     configure_clock_src(clk_audio_mclk, p_mclk_in);

@@ -494,11 +494,6 @@ int main()
     chan c_ea_data;
 #endif
 #endif
-#ifdef SU1_ADC_ENABLE
-    chan c_adc;
-#else
-#define c_adc null
-#endif
 
 #ifdef MIXER
     chan c_mix_ctl;
@@ -577,7 +572,7 @@ int main()
             );
         }
 
-        on tile[AUDIO_IO_TILE]: usb_audio_io(c_mix_out, c_adc
+        on tile[AUDIO_IO_TILE]: usb_audio_io(c_mix_out, null
 #if defined(SPDIF_TX) && (SPDIF_TX_TILE != AUDIO_IO_TILE)
             , c_spdif_tx
 #endif
@@ -658,10 +653,6 @@ int main()
 #endif
         USER_MAIN_CORES
     }
-
-#ifdef SU1_ADC_ENABLE
-        xs1_su_adc_service(c_adc);
-#endif
 
     return 0;
 }
