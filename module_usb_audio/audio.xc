@@ -643,7 +643,7 @@ unsigned static deliver(chanend c_out, chanend ?c_spd_out,
 #ifdef I2S_MODE_TDM
             p_lrclk <: 0x00000000;
 #else
-            p_lrclk <: 0x80000000;
+            p_lrclk <: 0x00000000;
 
 #endif
 #endif
@@ -741,7 +741,7 @@ unsigned static deliver(chanend c_out, chanend ?c_spd_out,
             else
                p_lrclk <: 0x00000000;
 #else
-            p_lrclk <: 0x7FFFFFFF;
+            p_lrclk <: 0xFFFFFFFF;
 #endif
 #endif
 
