@@ -263,6 +263,8 @@ static void updateVol(int unitID, int channel, chanend ?c_mix_ctl)
 #endif
                 break;
             }
+           default:
+                break;
         }
     }
 }
@@ -1051,6 +1053,9 @@ int AudioClassRequests_2(XUD_ep ep0_out, XUD_ep ep0_in, USB_SetupPacket_t &sp, c
                                 }
 
                                 break;
+
+                            default:
+                                break;
                         }
                         return XUD_DoGetRequest(ep0_out, ep0_in, buffer, length, sp.wLength);
                     }
@@ -1159,6 +1164,8 @@ int AudioEndpointRequests_1(XUD_ep ep0_out, XUD_ep ep0_in, USB_SetupPacket_t &sp
                 (buffer, unsigned[])[0] = g_curSamFreq;
                 return XUD_DoGetRequest(ep0_out, ep0_in, buffer, 3, sp.wLength);
                 break;
+            default:
+                 break;
         }
     }
 
