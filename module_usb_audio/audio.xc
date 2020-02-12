@@ -99,7 +99,7 @@ extern clock    clk_mst_spd;
 extern void device_reboot(void);
 
 #define MAX_DIVIDE_48 (MCLK_48/MIN_FREQ_48/64)
-#define MAX_DIVIDE_44 (MCLK_44/MIN_FREQ_44/64)
+#define MAX_DIVIDE_44 (MCLK_441/MIN_FREQ_44/64)
 #if (MAX_DIVIDE_44 > MAX_DIVIDE_48)
 #define MAX_DIVIDE (MAX_DIVIDE_44)
 #else
