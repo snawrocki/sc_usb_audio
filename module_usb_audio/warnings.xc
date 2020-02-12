@@ -5,8 +5,6 @@ Warnings relating to configuration defines located in this XC source file rather
 
 #include "customdefines.h"
 
-#include "customdefines.h"
-
 #ifndef DEFAULT_FREQ
 #warning DEFAULT_FREQ not defined. Using MIN_FREQ
 #endif
@@ -31,6 +29,7 @@ Warnings relating to configuration defines located in this XC source file rather
 #warning VENDOR_ID not defined. Using XMOS vendor ID (0x20B1)
 #endif
 
+#ifndef PRODUCT_STR
 #ifndef PRODUCT_STR_A2
 #warning PRODUCT_STR_A2 not defined. Using default XMOS string
 #endif
@@ -38,8 +37,9 @@ Warnings relating to configuration defines located in this XC source file rather
 #ifndef PRODUCT_STR_A1
 #warning PRODUCT_STR_A1 not defined. Using default XMOS string
 #endif
+#endif
 
-#ifndef BCD_DEVICE
+#if !defined(BCD_DEVICE_J) || !defined(BCD_DEVICE_M) || !defined(BCD_DEVICE_N)
 #warning BCD_DEVICE not defined. Using XMOS release version number
 #endif
 
@@ -69,5 +69,3 @@ Warnings relating to configuration defines located in this XC source file rather
 #if (NUM_USB_CHAN_IN_FS > NUM_USB_CHAN_IN)
 #error NUM_USB_CHAN_IN expected to be less than or equal to NUM_USB_CHAN_IN
 #endif
-
-
