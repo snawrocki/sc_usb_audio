@@ -1330,7 +1330,7 @@ enum USBEndpointNumber_Out
 #ifndef MAX_FREQ_FS
 #if (NUM_USB_CHAN_OUT_FS > 0) && (NUM_USB_CHAN_IN_FS > 0)
     #if(MAX_FREQ > 48000)
-        #define MAX_FREQ_FS              48000
+        #define MAX_FREQ_FS              96000
     #else
         #define MAX_FREQ_FS              MAX_FREQ
     #endif
