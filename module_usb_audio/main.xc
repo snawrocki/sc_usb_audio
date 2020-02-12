@@ -309,6 +309,9 @@ void usb_audio_core(chanend c_mix_out
 
     par
     {
+#ifdef U208_ONLY
+       set_core_high_priority_on();
+#endif
         /* USB Interface Core */
 #if (AUDIO_CLASS==2)
         XUD_Manager(c_xud_out, ENDPOINT_COUNT_OUT, c_xud_in, ENDPOINT_COUNT_IN,
